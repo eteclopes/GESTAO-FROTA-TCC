@@ -187,3 +187,5 @@ git push origin minha-funcionalidade
 
 **Tela em branco ao abrir o Electron**
 → Verifique se o arquivo `index.html` existe em `src/pages/`.
+
+https://claude.ai/share/6b6d739f-07eb-4ed1-ba57-83f1f600edd5
