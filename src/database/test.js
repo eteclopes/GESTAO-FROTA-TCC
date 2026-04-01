@@ -10,7 +10,7 @@ async function testar() {
     console.error('Código:', err.code);
     console.error('Mensagem:', err.message);
     console.error('SQL State:', err.sqlState);
-    console.error(err); // erro completo
+    console.error(err);
   }
 }
 
