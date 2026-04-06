@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
+    "dev": "nodemon --exec electron . --watch src --watch main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jane Doe",
