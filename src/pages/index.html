@@ -1,56 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Gestão de Frotas</title>
   </head>
   <body>
-    <h1>Banco: <span id="banco">Carregando...</span></h1>
-
-    <button id="btn-inserir">Inserir usuário teste</button>
-    <button id="btn-listar">Listar usuários</button>
-
-    <table border="1" id="tabela" style="margin-top: 20px;">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Login</th>
-          <th>Nível de Acesso</th>
-          <th>Ativo</th>
-        </tr>
-      </thead>
-      <tbody id="corpo"></tbody>
-    </table>
+    <h1>Login</h1>
+    <input id="usuario" type="text" placeholder="Usuário" />
+    <input id="password" type="password" placeholder="Senha" />
+    <button onclick="fazerLogin()">ENTRAR</button>
 
     <script>
-      const { ipcRenderer } = require('electron');
+      const { ipcRenderer } = require("electron");
 
-      ipcRenderer.invoke('get-database').then(nome => {
-        document.getElementById('banco').textContent = nome;
-      });
+      async function fazerLogin() {
+        const login = document.getElementById("usuario").value;
+        const senha = document.getElementById("password").value;
 
-      document.getElementById('btn-inserir').addEventListener('click', async () => {
-        await ipcRenderer.invoke('inserir-user');
-        alert('Usuário inserido!');
-      });
-
-      document.getElementById('btn-listar').addEventListener('click', async () => {
-        const users = await ipcRenderer.invoke('listar-users');
-        const corpo = document.getElementById('corpo');
-        corpo.innerHTML = '';
-        users.forEach(u => {
-          corpo.innerHTML += `
-            <tr>
-              <td>${u.id}</td>
-              <td>${u.nome}</td>
-              <td>${u.login}</td>
-              <td>${u.nivel_acesso}</td>
-              <td>${u.ativo ? 'Sim' : 'Não'}</td>
-            </tr>
-          `;
+        const resultado = await ipcRenderer.invoke("fazer-login", {
+          login,
+          senha,
         });
-      });
+
+        if (resultado.sucesso) {
+          window.location.href = "./dashboard.html";
+        } else {
+          alert("Usuário ou senha incorretos!");
+        }
+      }
     </script>
   </body>
 </html>
