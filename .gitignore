@@ -4,4 +4,4 @@ dist/
 build/
 .DS_Store
 Thumbs.db
-.vscode/
+package-lock.json
