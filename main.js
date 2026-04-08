@@ -1,5 +1,7 @@
 require('dotenv').config();
-require('electron-reload')(__dirname);
+require('electron-reload')(__dirname, {
+  ignored: /node_modules/
+});
 
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { getConnection } = require('./src/database/connection');
