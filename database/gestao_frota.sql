@@ -202,3 +202,7 @@ CREATE TABLE registro_camera (
         ON DELETE SET NULL
         ON UPDATE CASCADE
 );
+
+
+INSERT INTO user (nome, login, senha, nivel_acesso, ativo)
+VALUES ('Administrador', 'admin', '123', 'admin', 1);
